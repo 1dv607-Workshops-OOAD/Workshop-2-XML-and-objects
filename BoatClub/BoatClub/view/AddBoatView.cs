@@ -31,12 +31,14 @@ namespace BoatClub.view
 
         public void showMemberList()
         {
-            List<KeyValuePair<string, string>> listMembers = new List<KeyValuePair<string, string>>();
-            listMembers = memberDAL.listMembers();
+            List<Member> listMembers = new List<Member>();
+            listMembers = memberDAL.getAllMembers();
 
-            foreach (var member in listMembers)
+            foreach (Member member in listMembers)
             {
-                Console.WriteLine("{0}: {1}", member.Key, member.Value);
+                Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
+                Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
+                Console.WriteLine("{0}: {1}\n", helper.SocialSecNo, member.MemberSocSecNo);
             }
         }
 

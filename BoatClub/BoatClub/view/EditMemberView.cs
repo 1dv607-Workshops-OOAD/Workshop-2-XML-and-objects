@@ -60,12 +60,17 @@ namespace BoatClub.view
         public Member showSelectedMemberWithBoats(string memberId)
         {
             Member member = memberDAL.getMemberById(memberId);
+            List<Boat> boats = member.getBoatsByMember(member.MemberID);
             if (member != null) {
                 Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
                 Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
                 Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
-                Console.WriteLine("{0}: {1}", helper.BoatType, "");
-                //Add boats here!!!
+                foreach (Boat boat in boats)
+                {
+                    Console.WriteLine("{0}: {1}", helper.BoatId, boat.BoatId);
+                    Console.WriteLine("{0}: {1}", helper.BoatType, boat.BoatType);
+                    Console.WriteLine("{0}: {1}", helper.BoatLength, boat.BoatLength);
+                }
             }
             else { 
                 Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");

@@ -19,7 +19,7 @@ namespace BoatClub.model
             //Gets one member´s number of boats, and generates a boat id
             if (boatId == 0)
             {
-                this._boatId = 1 + _memberDAL.getNumberOfBoats(selectedMember);
+                this._boatId = 1 + _memberDAL.getBoatsByMemberId(selectedMember).Count;
             }
             else
             {

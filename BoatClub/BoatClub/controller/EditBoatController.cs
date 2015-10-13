@@ -12,14 +12,14 @@ namespace BoatClub.controller
     class EditBoatController
     {
         private EditBoatView editBoatView;
-        private string memberId;
+        private Member member;
         private string selectedBoatId;
 
         public EditBoatController(Member member)
         {
             Console.WriteLine("EditBoatController konstruktor" + member.MemberName);
-            this.editBoatView = new EditBoatView(member);
-            this.memberId = member.MemberID.ToString();
+            this.member = member;
+            this.editBoatView = new EditBoatView(this.member);
             
             //If a member has boats, show member´s boats
             editBoatView.showMemberBoatsMenu();
@@ -34,7 +34,7 @@ namespace BoatClub.controller
             if(selectedBoatId.ToUpper() == "S"){
                 StartController startController = new StartController();
             }
-            editBoatView.showEditBoatMenu(selectedBoatId, memberId);
+            editBoatView.showEditBoatMenu(selectedBoatId, member.MemberID.ToString());
         }
 
         public void executeMenuChoice()
@@ -45,11 +45,11 @@ namespace BoatClub.controller
 
             if (menuChoice == Helper.MenuChoice.Delete)
             {
-                memberDAL.deleteBoatById(selectedBoatId, memberId);
+                memberDAL.deleteBoatById(selectedBoatId, member.MemberID.ToString());
             }
             if (menuChoice == Helper.MenuChoice.Edit)
             {
-                memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), memberId);
+                memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), member.MemberID.ToString());
             }
             StartController startController = new StartController();
         }

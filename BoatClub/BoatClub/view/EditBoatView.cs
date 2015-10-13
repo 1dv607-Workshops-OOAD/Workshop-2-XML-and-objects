@@ -46,12 +46,13 @@ namespace BoatClub.view
                 helper.printDivider();
 
                 Console.WriteLine("\nAnge båtens id för att redigera eller radera.\n");
-                Console.WriteLine("Skriv ut båttyp");
                 
-                //foreach (var boat in boats)
-                //{
-                //    Console.WriteLine("{0}: {1}", boat.Key, boat.Value);
-                //}
+                foreach (Boat boat in boats)
+                {
+                    Console.WriteLine("{0}: {1}", helper.BoatId, boat.BoatId);
+                    Console.WriteLine("{0}: {1}", helper.BoatType, boat.BoatType);
+                    Console.WriteLine("{0}: {1}", helper.BoatLength, boat.BoatLength);
+                }
             }
         }
 
@@ -64,33 +65,21 @@ namespace BoatClub.view
         //Shows one boat to edit or delete
         public void showEditBoatMenu(string boatId, string memberId) {
 
-            try
+            Boat boat = memberDAL.getBoatById(boatId, memberId);
+            Console.Clear();
+            this.helper.printDivider();
+            Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);
+            this.helper.printDivider();
+
+            Console.WriteLine("\nAnge T för att ta bort båt.");
+            Console.WriteLine("Ange R för att redigera båt.\n");
+            if (boat != null)
             {
-                List<KeyValuePair<string, string>> boat = memberDAL.getBoatById(boatId, memberId);
-                Console.Clear();
-                this.helper.printDivider();
-                Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);
-                this.helper.printDivider();
-
-                Console.WriteLine("\nAnge T för att ta bort båt.");
-                Console.WriteLine("Ange R för att redigera båt.\n");
-
-                foreach (var element in boat)
-                {
-                    if (element.Key == memberDAL.getBoatTypeKey())
-                    {
-                        boatType = element.Value;
-                    }
-
-                    if (element.Key == memberDAL.getBoatLengthKey())
-                    {
-                        boatLength = element.Value;
-                    }
-                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
-                }
+                Console.WriteLine("{0}: {1}", helper.BoatId, boat.BoatId);
+                Console.WriteLine("{0}: {1}", helper.BoatType, boat.BoatType);
+                Console.WriteLine("{0}: {1}", helper.BoatLength, boat.BoatLength);
             }
-
-            catch (Exception) {
+            else {
                 Console.Clear();
                 Console.WriteLine("Båten finns inte.");
                 helper.getBackToStartMessage();

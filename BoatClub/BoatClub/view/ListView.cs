@@ -11,15 +11,15 @@ namespace BoatClub.view
     class ListView
     {
         private MemberDAL memberDAL;
-        private List<KeyValuePair<string, string>> listMembers;
+        private List<Member> listMembers;
         private Helper helper;
        
         public ListView()
         {
             this.memberDAL = new MemberDAL();
-            this.listMembers = new List<KeyValuePair<string, string>>();
+            this.listMembers = new List<Member>();
             this.helper = new Helper();
-            listMembers = memberDAL.listMembers();
+            listMembers = memberDAL.getAllMembers();
         }
 
         public Helper.MenuChoice goToStartMenu() { 
@@ -39,33 +39,38 @@ namespace BoatClub.view
             Console.WriteLine("FÖRENKLAD MEDLEMSLISTA");
             helper.printDivider();
             helper.getBackToStartMessage();
-            foreach (var member in listMembers)
-            {
-                if (member.Key == memberDAL.getBoatTypeKey() || 
-                    member.Key == memberDAL.getBoatLengthKey() ||
-                    member.Key == memberDAL.getSocialSecNoKey())
-                {
-                    continue;
-                }
-                Console.WriteLine("{0}: {1}", member.Key, member.Value);
+
+            foreach(Member member in listMembers){
+                Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
+                Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
+                Console.WriteLine("{0}: {1}", helper.NumberOfBoats, member.getBoatsByMember(member.MemberID).Count);
+                Console.WriteLine();
             }
+            
         }
 
         public void showVerboseList() {
+            
             Console.Clear();
-            this.helper.printDivider();
+            helper.printDivider();
             Console.WriteLine("UTÖKAD MEDLEMSLISTA");
-            this.helper.printDivider();
+            helper.printDivider();
 
             Console.WriteLine("\nAnge medlemsId för att redigera en medlem.");
             helper.getBackToStartMessage();
 
-            foreach (var member in listMembers)
-            {
-                if (member.Key == memberDAL.getNumberOfBoatsKey()) {
-                    continue;
+            foreach(Member member in listMembers){
+                Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
+                Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
+                Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
+
+                List<Boat> memberBoats = member.getBoatsByMember(member.MemberID);
+                foreach (Boat boat in memberBoats)
+                {
+                    Console.WriteLine("{0}: {1}", helper.BoatType, boat.BoatType);
+                    Console.WriteLine("{0}: {1}", helper.BoatLength, boat.BoatLength);
                 }
-                Console.WriteLine("{0}: {1}", member.Key, member.Value);
+                Console.WriteLine();
             }
         }
 

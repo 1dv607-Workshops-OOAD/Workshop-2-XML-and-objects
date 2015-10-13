@@ -12,10 +12,14 @@ namespace BoatClub.model
         string _memberName;
         string _memberSocSecNo;
 
+        MemberDAL memberDAL;
+
         private Boat boat;
 
         public Member(int id, string memberName, string memberSocSecNo)
         {
+            memberDAL = new MemberDAL();
+
             if (id == 0)
             {
                 //Sets a unique member id, for a new member
@@ -37,12 +41,16 @@ namespace BoatClub.model
         public void addBoatToMember(int boatId, string boatType, string boatLength)
         {
             boat = new Boat(boatId, boatType, boatLength, MemberID.ToString());
-            MemberDAL memberDAL = new MemberDAL();
             memberDAL.saveBoat(MemberID.ToString(), boat);
         }
 
         public Member getMemberById() {
             return null;
+        }
+
+        public List<Boat> getBoatsByMember(int memberId) {
+            List<Boat> memberBoats = memberDAL.getBoatsByMemberId(memberId.ToString());
+            return memberBoats;
         }
     }
 }

@@ -57,18 +57,21 @@ namespace BoatClub.view
             helper.getBackToStartMessage();
         }
 
-        public void showSelectedMemberWithBoats(string memberId)
+        public Member showSelectedMemberWithBoats(string memberId)
         {
             Member member = memberDAL.getMemberById(memberId);
             if (member != null) {
                 Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
                 Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
                 Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
+                Console.WriteLine("{0}: {1}", helper.BoatType, "");
                 //Add boats here!!!
             }
             else { 
                 Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");
             }
+
+            return member;
         }
 
         //Shows one member (without boat information) for editing member information

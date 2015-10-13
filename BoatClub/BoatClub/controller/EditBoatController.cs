@@ -15,13 +15,14 @@ namespace BoatClub.controller
         private string memberId;
         private string selectedBoatId;
 
-        public EditBoatController(string memberId)
+        public EditBoatController(Member member)
         {
-            this.editBoatView = new EditBoatView();
-            this.memberId = memberId;
+            Console.WriteLine("EditBoatController konstruktor" + member.MemberName);
+            this.editBoatView = new EditBoatView(member);
+            this.memberId = member.MemberID.ToString();
             
             //If a member has boats, show member´s boats
-            editBoatView.showMemberBoatsMenu(memberId);
+            editBoatView.showMemberBoatsMenu();
 
             showSelectedBoat();
             executeMenuChoice();

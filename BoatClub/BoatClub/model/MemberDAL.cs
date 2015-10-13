@@ -42,6 +42,7 @@ namespace BoatClub.model
                         string name = reader.GetAttribute(XMLAttributeName);
                         string socialSecNo = reader.GetAttribute(XMLAttributeSocialSecNo);
                         Member member = new Member(id, name, socialSecNo);
+
                         members.Add(member);
                     }
 
@@ -99,6 +100,28 @@ namespace BoatClub.model
             member.Attribute(XMLAttributeName).Value = editedMember.MemberName;
             member.Attribute(XMLAttributeSocialSecNo).Value = editedMember.MemberSocSecNo;
             doc.Save(path);
+        }
+
+        //Returns a list of boats for one member
+        public List<Boat> getBoatsByMemberId(string memberId)
+        {
+            List<Boat> boats = new List<Boat>();
+            Boat boat;
+            using (XmlTextReader reader = new XmlTextReader(path))
+            {
+                XDocument doc = XDocument.Load(path);
+                foreach (var item in doc.Descendants(XMLElementMember).Elements(XMLElementBoat)
+                        .Where(e => e.Parent.Name == XMLElementMember &&
+                        e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
+                {
+                    string boatId = item.Attribute(XMLAttributeBoatId).Value;
+                    string boatType = item.Attribute(XMLAttributeBoatType).Value;
+                    string boatLength = item.Attribute(XMLAttributeBoatLength).Value;
+                    boat = new Boat(int.Parse(boatId), boatType, boatLength, memberId);
+                    boats.Add(boat);
+                }
+            }
+            return boats;
         }
 
         public void saveBoat(string memberId, Boat newBoat)
@@ -218,25 +241,7 @@ namespace BoatClub.model
         }
 
 
-        //Returns a list of boats for one member
-        public List<KeyValuePair<string, string>> getBoatsByMemberId(string memberId)
-        {
-            List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
-            using (XmlTextReader reader = new XmlTextReader(path))
-            {
-                XDocument doc = XDocument.Load(path);
-                foreach (var item in doc.Descendants(XMLElementMember).Elements(XMLElementBoat)
-                        .Where(e => e.Parent.Name == XMLElementMember &&
-                        e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
-                {
-                    boats.Add(new KeyValuePair<string, string>(boatId, item.Attribute(XMLAttributeBoatId).Value));
-                    boats.Add(new KeyValuePair<string, string>(boatType, item.Attribute(XMLAttributeBoatType).Value));
-                    boats.Add(new KeyValuePair<string, string>(boatLength, item.Attribute(XMLAttributeBoatLength).Value));
-                }
-            }
-
-            return boats;
-        }
+       
 
         //Returns one boat
         public List<KeyValuePair<string, string>> getBoatById(string selectedBoatId, string memberId)

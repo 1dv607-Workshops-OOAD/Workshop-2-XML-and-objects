@@ -13,6 +13,7 @@ namespace BoatClub.controller
     {
         private string selectedMember;
         private EditMemberView editMemberView;
+        Member member;
 
         public EditMemberController(string selectedMember)
         {
@@ -25,7 +26,7 @@ namespace BoatClub.controller
         public void showMemberView()
         {
             editMemberView.showEditMemberMenu();
-            editMemberView.showSelectedMemberWithBoats(selectedMember);
+            member = editMemberView.showSelectedMemberWithBoats(selectedMember);
         }
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)
@@ -34,7 +35,7 @@ namespace BoatClub.controller
 
             if (menuChoice == Helper.MenuChoice.Boats)
             {
-                EditBoatController editBoatcontroller = new EditBoatController(selectedMember);
+                EditBoatController editBoatcontroller = new EditBoatController(member);
             }
             else { 
                 if (menuChoice == Helper.MenuChoice.Delete)

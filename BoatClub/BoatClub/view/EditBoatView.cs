@@ -12,45 +12,46 @@ namespace BoatClub.view
     {
         private Helper helper;
         private MemberDAL memberDAL;
+        private Member member;
         private string boatId;
         private string boatType;
         private string boatLength;
         private string memberId;
 
-        public EditBoatView() {
+        public EditBoatView(Member member) {
             this.helper = new Helper();
             this.memberDAL = new MemberDAL();
+            this.member = member;
         }
 
         //Shows one member´s boats, with menu choices
-        public void showMemberBoatsMenu(string memberId){
+        public void showMemberBoatsMenu(){
 
-            if (memberDAL.getNumberOfBoats(memberId) == 0)
+            List<Boat> boats = member.getBoatsByMember(member.MemberID);
+
+            if (boats.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Medlemmen har inga båtar.");
                 helper.getBackToStartMessage();
             }
 
-            else { 
-
-                this.memberId = memberId;
-
-                List<KeyValuePair<string, string>> boats = new List<KeyValuePair<string, string>>();
-                boats = memberDAL.getBoatsByMemberId(memberId);
+            else {                
+                boats = member.getBoatsByMember(member.MemberID);
 
                 Console.Clear();
 
-                this.helper.printDivider();
-                Console.WriteLine("MEDLEM " + memberId + ":S BÅTAR");
-                this.helper.printDivider();
+                helper.printDivider();
+                Console.WriteLine("MEDLEM " + member.MemberID + ":S BÅTAR");
+                helper.printDivider();
 
                 Console.WriteLine("\nAnge båtens id för att redigera eller radera.\n");
-
-                foreach (var boat in boats)
-                {
-                    Console.WriteLine("{0}: {1}", boat.Key, boat.Value);
-                }
+                Console.WriteLine("Skriv ut båttyp");
+                
+                //foreach (var boat in boats)
+                //{
+                //    Console.WriteLine("{0}: {1}", boat.Key, boat.Value);
+                //}
             }
         }
 

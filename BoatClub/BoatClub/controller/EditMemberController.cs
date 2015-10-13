@@ -11,14 +11,13 @@ namespace BoatClub.controller
 {
     class EditMemberController
     {
-        private string selectedMember;
         private EditMemberView editMemberView;
-        Member member;
+        private Member member;
 
-        public EditMemberController(string selectedMember)
+        public EditMemberController(Member member)
         {
-            this.selectedMember = selectedMember;
-            this.editMemberView = new EditMemberView();
+            this.member = member;
+            this.editMemberView = new EditMemberView(member);
             showMemberView();
             executeMenuChoice(editMemberView.getMenuChoice());
         }
@@ -26,7 +25,7 @@ namespace BoatClub.controller
         public void showMemberView()
         {
             editMemberView.showEditMemberMenu();
-            member = editMemberView.showSelectedMemberWithBoats(selectedMember);
+            member = editMemberView.showSelectedMemberWithBoats(member.MemberID);
         }
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)
@@ -40,14 +39,14 @@ namespace BoatClub.controller
             else { 
                 if (menuChoice == Helper.MenuChoice.Delete)
                 {
-                    memberDAL.deleteMemberById(selectedMember);
+                    memberDAL.deleteMemberById(member.MemberID);
                 }
                 if (menuChoice == Helper.MenuChoice.Edit)
                 {
-                    editMemberView.showSelectedMemberWithoutBoats(selectedMember);
+                    editMemberView.showSelectedMemberWithoutBoats();
                     
                     //editMemberView.editMember returns a member object
-                    memberDAL.updateMemberById(editMemberView.editMember(selectedMember));
+                    memberDAL.updateMemberById(editMemberView.editMember());
                 }
             
                 StartController startController = new StartController();

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BoatClub.helper;
 using BoatClub.view;
+using BoatClub.model;
 
 namespace BoatClub.controller
 {
@@ -32,14 +33,14 @@ namespace BoatClub.controller
             else
             {
                 listView.showVerboseList();
-                string choice = listView.getChoice();
+                Member member = listView.getSelectedMember();
 
-                if (choice.ToUpper() == "S")
+                if (member == null)
                 {
                     StartController startController = new StartController();
                 }
 
-                EditMemberController editMemberController = new EditMemberController(choice);
+                EditMemberController editMemberController = new EditMemberController(member);
             }
         }
     }

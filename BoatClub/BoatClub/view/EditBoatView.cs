@@ -116,7 +116,7 @@ namespace BoatClub.view
                 newBoatLength = boat.BoatLength;
             }
 
-            Boat editedBoat = new Boat(int.Parse(boatId), newBoatType, newBoatLength, memberId);
+            Boat editedBoat = new Boat(boatId, newBoatType, newBoatLength, memberId);
 
             return editedBoat;
         }

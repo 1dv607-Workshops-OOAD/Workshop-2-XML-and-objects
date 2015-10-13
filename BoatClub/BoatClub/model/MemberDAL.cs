@@ -112,7 +112,7 @@ namespace BoatClub.model
                     string boatId = item.Attribute(XMLAttributeBoatId).Value;
                     string boatType = item.Attribute(XMLAttributeBoatType).Value;
                     string boatLength = item.Attribute(XMLAttributeBoatLength).Value;
-                    boat = new Boat(int.Parse(boatId), boatType, boatLength, memberId);
+                    boat = new Boat(boatId, boatType, boatLength, memberId);
                     boats.Add(boat);
                 }
             }

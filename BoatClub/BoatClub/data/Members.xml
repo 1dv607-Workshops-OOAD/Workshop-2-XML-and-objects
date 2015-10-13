@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Members>
-  <Member memberId="27" name="Johanna" socialSecNo="2222222222">
+  <Member memberId="27" name="Johanna S" socialSecNo="2222222222">
     <Boat boatId="2" boatType="Segelbåt" boatLength="12" />
     <Boat boatId="3" boatType="Segelbåt" boatLength="15" />
   </Member>
@@ -10,5 +10,5 @@
   <Member memberId="32" name="Caroline" socialSecNo="1234567412">
     <Boat boatId="2" boatType="Annan" boatLength="13" />
   </Member>
-  <Member memberId="34" name="Lisa" socialSecNo="1234567890" />
+  <Member memberId="35" name="Daniel" socialSecNo="1234567890" />
 </Members>

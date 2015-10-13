@@ -10,16 +10,16 @@ namespace BoatClub.model
     {
         string _boatType;
         string _boatLength;
-        int _boatId;
+        string _boatId;
 
-        public Boat(int boatId, string boatType, string boatLength, string selectedMember)
+        public Boat(string boatId, string boatType, string boatLength, string selectedMember)
         {
             MemberDAL _memberDAL = new MemberDAL();
 
             //Gets one member´s number of boats, and generates a boat id
-            if (boatId == 0)
+            if (boatId == "0")
             {
-                this._boatId = 1 + _memberDAL.getBoatsByMemberId(selectedMember).Count;
+                this._boatId = 1 + _memberDAL.getBoatsByMemberId(selectedMember).Count.ToString();
             }
             else
             {
@@ -29,7 +29,7 @@ namespace BoatClub.model
             this._boatLength = boatLength;
         }
 
-        public int BoatId { get { return _boatId; } }
+        public string BoatId { get { return _boatId; } }
         
         public string BoatType { get { return _boatType; } }
         

@@ -38,10 +38,10 @@ namespace BoatClub.model
         public string MemberSocSecNo { get { return _memberSocSecNo; } }
         public string MemberID { get { return _memberId; } }
 
-        public void addBoatToMember(int boatId, string boatType, string boatLength)
+        public void addBoatToMember(string boatId, string boatType, string boatLength)
         {
-            boat = new Boat(boatId, boatType, boatLength, MemberID.ToString());
-            memberDAL.saveBoat(MemberID.ToString(), boat);
+            boat = new Boat(boatId, boatType, boatLength, MemberID);
+            memberDAL.saveBoat(MemberID, boat);
         }
 
         public List<Boat> getBoatsByMember(string memberId) {

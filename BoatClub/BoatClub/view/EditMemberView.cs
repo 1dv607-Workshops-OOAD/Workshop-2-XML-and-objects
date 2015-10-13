@@ -12,13 +12,13 @@ namespace BoatClub.view
     {
         Helper helper;
         private MemberDAL memberDAL;
-        private string name;
-        private string socialSecNo;
+        private Member member;
 
-        public EditMemberView()
+        public EditMemberView(Member member)
         {
             this.helper = new Helper();
             this.memberDAL = new MemberDAL();
+            this.member = member;
         }
 
         public Helper.MenuChoice getMenuChoice()
@@ -59,9 +59,9 @@ namespace BoatClub.view
 
         public Member showSelectedMemberWithBoats(string memberId)
         {
-            Member member = memberDAL.getMemberById(memberId);
+         //   member = memberDAL.getMemberById(memberId);
             List<Boat> boats = member.getBoatsByMember(member.MemberID);
-            if (member != null) {
+            if (getMemberById() != null) {
                 Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
                 Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
                 Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
@@ -80,12 +80,12 @@ namespace BoatClub.view
         }
 
         //Shows one member (without boat information) for editing member information
-        public void showSelectedMemberWithoutBoats(string memberId)
+        public void showSelectedMemberWithoutBoats()
         {
-            Member member = memberDAL.getMemberById(memberId);
+            //member = memberDAL.getMemberById(memberId);
             Console.Clear();
             helper.printDivider();
-            Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
+            Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + member.MemberID);
             helper.printDivider();
             Console.WriteLine();
             Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
@@ -95,9 +95,9 @@ namespace BoatClub.view
             Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
         }
 
-        public Member editMember(string memberId)
+        public Member editMember()
         {
-            Member member = memberDAL.getMemberById(memberId);
+            //member = memberDAL.getMemberById(memberId);
             helper.printDivider();
             Console.Write("Namn: ");
             string newName = Console.ReadLine();
@@ -113,9 +113,13 @@ namespace BoatClub.view
                 newSocialSecNo = member.MemberSocSecNo;
             }
 
-            Member editedMember = new Member(memberId, newName, newSocialSecNo);
+            Member editedMember = new Member(member.MemberID, newName, newSocialSecNo);
 
             return editedMember;
+        }
+
+        public Member getMemberById() {
+            return memberDAL.getMemberById(member.MemberID);
         }
     }
 }

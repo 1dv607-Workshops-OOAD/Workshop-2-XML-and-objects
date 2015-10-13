@@ -74,10 +74,10 @@ namespace BoatClub.view
             }
         }
 
-        public string getChoice() {
-            //Returns selected member or S for start menu
-            string choice = Console.ReadLine();
-            return choice;
+        public Member getSelectedMember()
+        {
+            Member member = memberDAL.getMemberById(Console.ReadLine());
+            return member;
         }    
     }
 }

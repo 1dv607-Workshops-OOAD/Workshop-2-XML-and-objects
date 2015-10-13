@@ -148,6 +148,17 @@ namespace BoatClub.model
             doc.Save(path);
         }
 
+        public void updateBoatById(Boat editedBoat, string memberId)
+        {
+            XDocument doc = XDocument.Load(path);
+            var member = doc.Descendants(XMLElementMember)
+                .Where(arg => arg.Attribute(XMLAttributeMemberId).Value == memberId)
+                .Single();
+            member.Element(XMLElementBoat).Attribute(XMLAttributeBoatType).Value = editedBoat.BoatType;
+            member.Element(XMLElementBoat).Attribute(XMLAttributeBoatLength).Value = editedBoat.BoatLength;
+            doc.Save(path);
+        }
+
         //Returns one boat
         public Boat getBoatById(string selectedBoatId, string memberId)
         {
@@ -195,15 +206,6 @@ namespace BoatClub.model
 
         
 
-        public void updateBoatById(Boat editedBoat, string memberId)
-        {
-            XDocument doc = XDocument.Load(path);
-            var member = doc.Descendants(XMLElementMember)
-                .Where(arg => arg.Attribute(XMLAttributeMemberId).Value == memberId)
-                .Single();
-            member.Element(XMLElementBoat).Attribute(XMLAttributeBoatType).Value = editedBoat.BoatType;
-            member.Element(XMLElementBoat).Attribute(XMLAttributeBoatLength).Value = editedBoat.BoatLength;
-            doc.Save(path);
-        }
+        
     }
 }

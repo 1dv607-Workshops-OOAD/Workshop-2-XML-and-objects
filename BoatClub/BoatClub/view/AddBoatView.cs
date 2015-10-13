@@ -85,10 +85,7 @@ namespace BoatClub.view
                 boatLength = Console.ReadLine();
             }
             
-            //Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
-
             member.addBoatToMember(0, boatType, boatLength);
-            //return newBoat;
         }
     }
 }

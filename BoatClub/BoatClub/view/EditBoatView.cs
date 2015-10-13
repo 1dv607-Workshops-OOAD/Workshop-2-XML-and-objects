@@ -17,6 +17,7 @@ namespace BoatClub.view
         private string boatType;
         private string boatLength;
         private string memberId;
+        private Boat boat;
 
         public EditBoatView(Member member) {
             this.helper = new Helper();
@@ -65,7 +66,7 @@ namespace BoatClub.view
         //Shows one boat to edit or delete
         public void showEditBoatMenu(string boatId, string memberId) {
 
-            Boat boat = memberDAL.getBoatById(boatId, memberId);
+            boat = memberDAL.getBoatById(boatId, memberId);
             Console.Clear();
             this.helper.printDivider();
             Console.WriteLine("MEDLEM " + memberId + ":S BÅT " + boatId);
@@ -112,7 +113,7 @@ namespace BoatClub.view
 
             if (newBoatLength == "")
             {
-                newBoatLength = boatLength;
+                newBoatLength = boat.BoatLength;
             }
 
             Boat editedBoat = new Boat(int.Parse(boatId), newBoatType, newBoatLength, memberId);

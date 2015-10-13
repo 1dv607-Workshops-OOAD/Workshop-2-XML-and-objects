@@ -57,9 +57,8 @@ namespace BoatClub.view
             helper.getBackToStartMessage();
         }
 
-        public Member showSelectedMemberWithBoats(string memberId)
+        public Member showSelectedMemberWithBoats()
         {
-         //   member = memberDAL.getMemberById(memberId);
             List<Boat> boats = member.getBoatsByMember(member.MemberID);
             if (getMemberById() != null) {
                 Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
@@ -82,7 +81,6 @@ namespace BoatClub.view
         //Shows one member (without boat information) for editing member information
         public void showSelectedMemberWithoutBoats()
         {
-            //member = memberDAL.getMemberById(memberId);
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + member.MemberID);
@@ -97,7 +95,6 @@ namespace BoatClub.view
 
         public Member editMember()
         {
-            //member = memberDAL.getMemberById(memberId);
             helper.printDivider();
             Console.Write("Namn: ");
             string newName = Console.ReadLine();

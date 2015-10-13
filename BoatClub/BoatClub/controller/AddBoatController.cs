@@ -10,17 +10,17 @@ namespace BoatClub.controller
 {
     class AddBoatController
     {
-        private AddBoatView boatView;
-        
-        private string choice;
+        private AddBoatView addBoatView;
+
+        private Member member;
 
         public AddBoatController()
         {
-            this.boatView = new AddBoatView();
-            boatView.showAddBoatMenu();
-            boatView.showMemberList();
-            choice = boatView.getChoice();
-            if (boatView.doesMemberExist())
+            this.addBoatView = new AddBoatView();
+            addBoatView.showAddBoatMenu();
+            addBoatView.showMemberList();
+            member = addBoatView.getSelectedMember();
+            if (member != null)
             {
                 saveBoat();
             }
@@ -32,7 +32,7 @@ namespace BoatClub.controller
         public void saveBoat()
         {
             MemberDAL memberDAL = new MemberDAL();
-            boatView.addBoat(choice);
+            addBoatView.addBoat(member);
 
             //Save boat and go back to main menu
             //memberDAL.saveBoat(newBoat, choice);

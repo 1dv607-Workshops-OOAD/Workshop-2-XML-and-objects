@@ -10,5 +10,7 @@
   <Member memberId="32" name="Caroline" socialSecNo="1234567412">
     <Boat boatId="2" boatType="Annan" boatLength="13" />
   </Member>
-  <Member memberId="35" name="Daniel" socialSecNo="1234567890" />
+  <Member memberId="35" name="Daniel" socialSecNo="1234567890">
+    <Boat boatId="10" boatType="Segelbåt" boatLength="12" />
+  </Member>
 </Members>

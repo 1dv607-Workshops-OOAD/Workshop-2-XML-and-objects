@@ -42,30 +42,18 @@ namespace BoatClub.view
             }
         }
 
-        public string getChoice()
+        public Member getSelectedMember()
         {
-            //Returns selected member or S for start menu
-            string choice = Console.ReadLine();
-            
-            
-            try {
-                Member member = memberDAL.getMemberById(choice);
-            }
-
-            catch(Exception){
-                memberExists = false;
-            }
-            return choice;
+            Member member = memberDAL.getMemberById(Console.ReadLine());
+            return member;
         }
 
         public bool doesMemberExist() {
             return memberExists;
         }
 
-        public void addBoat(string selectedMember)
+        public void addBoat(Member member)
         {
-            Member member = memberDAL.getMemberById(selectedMember);
-
             string boatType = "";
             string boatLength = ""; 
             

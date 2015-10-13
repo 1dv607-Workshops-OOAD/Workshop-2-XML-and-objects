@@ -25,7 +25,7 @@ namespace BoatClub.controller
         public void showMemberView()
         {
             editMemberView.showEditMemberMenu();
-            member = editMemberView.showSelectedMemberWithBoats(member.MemberID);
+            member = editMemberView.showSelectedMemberWithBoats();
         }
 
         public void executeMenuChoice(Helper.MenuChoice menuChoice)

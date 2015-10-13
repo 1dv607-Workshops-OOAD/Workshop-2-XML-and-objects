@@ -1,0 +1,12 @@
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.exe.config
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\BoatClub.csprojResolveAssemblyReference.cache
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\TestPC.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\TestPC.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\obj\Release\BoatClub.csprojResolveAssemblyReference.cache
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\bin\Release\BoatClub.exe.config
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\bin\Release\BoatClub.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\bin\Release\BoatClub.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\obj\Release\BoatClub.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\obj\Release\BoatClub.pdb

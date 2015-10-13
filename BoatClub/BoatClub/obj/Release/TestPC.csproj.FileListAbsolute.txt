@@ -1,0 +1,6 @@
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.exe.config
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\bin\Release\TestPC.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\TestPC.csprojResolveAssemblyReference.cache
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\TestPC.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\TestPC\TestPC\obj\Release\TestPC.pdb

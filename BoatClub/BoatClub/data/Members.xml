@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Members>
-  <Member memberId="27" name="Johanna S" socialSecNo="2222222222">
-    <Boat boatId="2" boatType="Segelbåt" boatLength="12" />
+  <Member memberId="27" name="Johanna S" socialSecNo="11111111">
     <Boat boatId="3" boatType="Segelbåt" boatLength="15" />
+    <Boat boatId="11" boatType="Motorseglare" boatLength="100" />
   </Member>
   <Member memberId="30" name="Test" socialSecNo="123">
     <Boat boatId="1" boatType="Annan" boatLength="10" />
@@ -12,5 +12,12 @@
   </Member>
   <Member memberId="35" name="Daniel" socialSecNo="1234567890">
     <Boat boatId="10" boatType="Segelbåt" boatLength="12" />
+  </Member>
+  <Member memberId="36" name="Anders" socialSecNo="123">
+    <Boat boatId="10" boatType="Segelbåt" boatLength="12" />
+    <Boat boatId="11" boatType="Annan" boatLength="14" />
+  </Member>
+  <Member memberId="37" name="Erik Eriksson" socialSecNo="123">
+    <Boat boatId="10" boatType="Motorseglare" boatLength="12" />
   </Member>
 </Members>

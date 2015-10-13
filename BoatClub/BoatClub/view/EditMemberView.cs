@@ -11,13 +11,11 @@ namespace BoatClub.view
     class EditMemberView
     {
         Helper helper;
-        private MemberDAL memberDAL;
         private Member member;
 
         public EditMemberView(Member member)
         {
             this.helper = new Helper();
-            this.memberDAL = new MemberDAL();
             this.member = member;
         }
 
@@ -116,7 +114,7 @@ namespace BoatClub.view
         }
 
         public Member getMemberById() {
-            return memberDAL.getMemberById(member.MemberID);
+            return member.getMemberById();
         }
     }
 }

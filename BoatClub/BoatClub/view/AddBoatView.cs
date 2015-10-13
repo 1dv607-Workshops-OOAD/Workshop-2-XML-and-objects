@@ -12,7 +12,6 @@ namespace BoatClub.view
     {
         private Helper helper;
         private MemberDAL memberDAL;
-        private bool memberExists = true;
 
         public AddBoatView()
         {
@@ -46,10 +45,6 @@ namespace BoatClub.view
         {
             Member member = memberDAL.getMemberById(Console.ReadLine());
             return member;
-        }
-
-        public bool doesMemberExist() {
-            return memberExists;
         }
 
         public void addBoat(Member member)

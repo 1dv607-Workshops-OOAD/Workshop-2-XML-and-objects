@@ -76,8 +76,7 @@ namespace BoatClub.view
 
         public Member getSelectedMember()
         {
-            Member member = memberDAL.getMemberById(Console.ReadLine());
-            return member;
+            return memberDAL.getMemberById(Console.ReadLine());
         }    
     }
 }

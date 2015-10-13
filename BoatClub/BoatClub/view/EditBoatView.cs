@@ -11,17 +11,12 @@ namespace BoatClub.view
     class EditBoatView
     {
         private Helper helper;
-        private MemberDAL memberDAL;
         private Member member;
         private string boatId;
-        private string boatType;
-        private string boatLength;
-        private string memberId;
         private Boat boat;
 
         public EditBoatView(Member member) {
             this.helper = new Helper();
-            this.memberDAL = new MemberDAL();
             this.member = member;
         }
 
@@ -65,7 +60,7 @@ namespace BoatClub.view
 
         //Shows one boat to edit or delete
         public void showEditBoatMenu(string boatId, string memberId) {
-
+            MemberDAL memberDAL = new MemberDAL();
             boat = memberDAL.getBoatById(boatId, memberId);
             Console.Clear();
             this.helper.printDivider();
@@ -106,8 +101,11 @@ namespace BoatClub.view
             helper.printDivider();
             Console.WriteLine("REDIGERA BÅT MED ID " + selectedBoatId + "\n");
             helper.printDivider();
-            helper.getBoatTypeMenu();
-            string newBoatType = helper.setBoatType(Console.ReadLine());
+            string newBoatType = "";
+            while (newBoatType == "") { 
+                helper.getBoatTypeMenu();
+                newBoatType = helper.setBoatType(Console.ReadLine());
+            }
             Console.Write("Båtlängd: \n");
             string newBoatLength = Console.ReadLine();
 
@@ -116,7 +114,7 @@ namespace BoatClub.view
                 newBoatLength = boat.BoatLength;
             }
 
-            Boat editedBoat = new Boat(boatId, newBoatType, newBoatLength, memberId);
+            Boat editedBoat = new Boat(boatId, newBoatType, newBoatLength, member.MemberID);
 
             return editedBoat;
         }

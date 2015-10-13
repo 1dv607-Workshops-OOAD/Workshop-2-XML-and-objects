@@ -15,3 +15,4 @@ C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatCl
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\obj\Release\BoatClub.pdb
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\bin\Release\BoatClub.exe
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\bin\Release\BoatClub.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\obj\Release\BoatClub.csprojResolveAssemblyReference.cache

@@ -44,8 +44,10 @@ namespace BoatClub.view
         {
             //Returns selected member or S for start menu
             string choice = Console.ReadLine();
+            
+            
             try {
-                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(choice);
+                Member member = memberDAL.getMemberById(choice);
             }
 
             catch(Exception){
@@ -58,8 +60,10 @@ namespace BoatClub.view
             return memberExists;
         }
 
-        public Boat addBoat(string selectedMember)
+        public void addBoat(string selectedMember)
         {
+            Member member = memberDAL.getMemberById(selectedMember);
+
             string boatType = "";
             string boatLength = ""; 
             
@@ -79,8 +83,10 @@ namespace BoatClub.view
                 boatLength = Console.ReadLine();
             }
             
-            Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
-            return newBoat;
+            //Boat newBoat = new Boat(0, boatType, boatLength, selectedMember);
+
+            member.addBoatToMember(0, boatType, boatLength);
+            //return newBoat;
         }
     }
 }

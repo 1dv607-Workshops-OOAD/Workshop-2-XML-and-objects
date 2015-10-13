@@ -57,22 +57,16 @@ namespace BoatClub.view
             helper.getBackToStartMessage();
         }
 
-        public void showSelectedMember(string memberId)
+        public void showSelectedMemberWithBoats(string memberId)
         {
-
-            try { 
-                List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
-                foreach (var element in member)
-                {
-                    if (element.Key == memberDAL.getNumberOfBoatsKey())
-                    {
-                        continue;
-                    }
-                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
-                }
+            Member member = memberDAL.getMemberById(memberId);
+            if (member != null) {
+                Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
+                Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
+                Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
+                //Add boats here!!!
             }
-
-            catch(Exception){
+            else { 
                 Console.WriteLine("Medlemmen finns inte! Tryck S för att gå tillbaka till startmenyn.");
             }
         }
@@ -80,7 +74,7 @@ namespace BoatClub.view
         //Shows one member (without boat information) for editing member information
         public void showSelectedMemberWithoutBoats(string memberId)
         {
-            List<KeyValuePair<string, string>> member = memberDAL.getMemberById(memberId);
+            Member member = memberDAL.getMemberById(memberId);
             Console.Clear();
             helper.printDivider();
             Console.WriteLine("REDIGERA MEDLEM MED MEDLEMSNUMMER " + memberId);
@@ -88,30 +82,15 @@ namespace BoatClub.view
             Console.WriteLine();
             Console.WriteLine("Lämna tomt för att behålla gammalt värde.\n");
 
-            foreach (var element in member)
-            {
-                if (element.Key == memberDAL.getNameKey() || element.Key == memberDAL.getSocialSecNoKey())
-                {
-                    if (element.Key == memberDAL.getNameKey())
-                    {
-                        name = element.Value;
-                    }
-                    if (element.Key == memberDAL.getSocialSecNoKey())
-                    {
-                        socialSecNo = element.Value;
-                    }
-                    Console.WriteLine("{0}: {1}", element.Key, element.Value);
-                }
-
-                else
-                {
-                    continue;
-                }
-            }
+            Console.WriteLine("{0}: {1}", helper.MemberId, member.MemberID);
+            Console.WriteLine("{0}: {1}", helper.Name, member.MemberName);
+            Console.WriteLine("{0}: {1}", helper.SocialSecNo, member.MemberSocSecNo);
         }
 
         public Member editMember(string memberId)
         {
+            Member member = memberDAL.getMemberById(memberId);
+            helper.printDivider();
             Console.Write("Namn: ");
             string newName = Console.ReadLine();
             Console.Write("Personummer: ");
@@ -119,11 +98,11 @@ namespace BoatClub.view
 
             if (newName == "")
             {
-                newName = name;
+                newName = member.MemberName;
             }
             if (newSocialSecNo == "")
             {
-                newSocialSecNo = socialSecNo;
+                newSocialSecNo = member.MemberSocSecNo;
             }
 
             Member editedMember = new Member(int.Parse(memberId), newName, newSocialSecNo);

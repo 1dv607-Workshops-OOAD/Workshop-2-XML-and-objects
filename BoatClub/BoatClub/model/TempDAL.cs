@@ -11,8 +11,20 @@ using System.Xml.XmlConfiguration;
 
 namespace BoatClub.model
 {
-    class MemberDAL
+    class TempDAL
     {
+        /*
+        private Helper helper;
+
+        //Strings for generating key value pair lists
+        private string boatType;
+        private string boatLength;
+        private string socialSecNo;
+        private string memberId;
+        private string name;
+        private string numberOfBoats;
+        private string boatId;
+
         //Path to XML file
         private string path = "../../data/Members.xml";
 
@@ -26,112 +38,6 @@ namespace BoatClub.model
         private string XMLAttributeBoatId = "boatId";
         private string XMLAttributeBoatType = "boatType";
         private string XMLAttributeBoatLength = "boatLength";
-
-
-        public List<Member> getAllMembers() {
-
-            List<Member> members = new List<Member>();
-
-            using (XmlTextReader reader = new XmlTextReader(path))
-            {
-                while (reader.Read())
-                {
-                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == XMLElementMember))
-                    {
-                        int id = int.Parse(reader.GetAttribute(XMLAttributeMemberId));
-                        string name = reader.GetAttribute(XMLAttributeName);
-                        string socialSecNo = reader.GetAttribute(XMLAttributeSocialSecNo);
-                        Member member = new Member(id, name, socialSecNo);
-                        members.Add(member);
-                    }
-
-                    //reader.GetAttribute(XMLAttributeBoatType);
-                    //reader.GetAttribute(XMLAttributeBoatLength);
-                }
-            }
-            return members;
-
-        }
-
-        //Returns selected member
-        public Member getMemberById(string memberId)
-        {
-            List<Member> members = getAllMembers();
-            Member selectedMember;
-
-            foreach (Member member in members) { 
-                if(member.MemberID == int.Parse(memberId)){
-                    selectedMember = member;
-                    return selectedMember;
-                }
-            }
-
-            return null;
-        }
-
-        public void saveMember(Member newMember)
-        {
-            XDocument doc = XDocument.Load(path);
-            XElement memberRoot = new XElement(XMLElementMember);
-            memberRoot.Add(new XAttribute(XMLAttributeMemberId, newMember.MemberID.ToString()));
-            memberRoot.Add(new XAttribute(XMLAttributeName, newMember.MemberName));
-            memberRoot.Add(new XAttribute(XMLAttributeSocialSecNo, newMember.MemberSocSecNo));
-            doc.Element(XMLElementMembers).Add(memberRoot);
-            doc.Save(path);
-        }
-
-        public void deleteMemberById(string memberId)
-        {
-            XDocument doc = XDocument.Load(path);
-            doc.Root.Elements(XMLElementMember)
-                .Where(e => e.Attribute(XMLAttributeMemberId).Value.Equals(memberId))
-                .Select(e => e).Single()
-                .Remove();
-            doc.Save(path);
-        }
-
-        public void updateMemberById(Member editedMember)
-        {
-            XDocument doc = XDocument.Load(path);
-            var member = doc.Descendants(XMLElementMember)
-                .Where(arg => arg.Attribute(XMLAttributeMemberId).Value == editedMember.MemberID.ToString())
-                .Single();
-            member.Attribute(XMLAttributeName).Value = editedMember.MemberName;
-            member.Attribute(XMLAttributeSocialSecNo).Value = editedMember.MemberSocSecNo;
-            doc.Save(path);
-        }
-
-        public void saveBoat(string memberId, Boat newBoat)
-        {
-            XDocument doc = XDocument.Load(path);
-            doc.Element(XMLElementMembers).Elements(XMLElementMember)
-            .First(c => (string)c.Attribute(XMLAttributeMemberId) == memberId)
-            .Add(
-                new XElement(
-                XMLElementBoat, new XAttribute(XMLAttributeBoatId, newBoat.BoatId),
-                                new XAttribute(XMLAttributeBoatType, newBoat.BoatType),
-                                new XAttribute(XMLAttributeBoatLength, newBoat.BoatLength)
-                )
-            );
-            doc.Save(path);
-        }
-
-
-        /// <summary>
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-
-        private Helper helper;
-
-        //Strings for generating key value pair lists
-        private string boatType;
-        private string boatLength;
-        private string socialSecNo;
-        private string memberId;
-        private string name;
-        private string numberOfBoats;
-        private string boatId;
-
 
         public MemberDAL()
         {
@@ -200,12 +106,79 @@ namespace BoatClub.model
             }
         }
 
-        
-        
+        //Returns list containing one member with boats
+        public List<KeyValuePair<string, string>> getMemberById(string memberId)
+        {
+            List<KeyValuePair<string, string>> member = new List<KeyValuePair<string, string>>();
 
-        
+            using (XmlTextReader reader = new XmlTextReader(path))
+            {
+                XDocument doc = XDocument.Load(path);
 
-        
+                while (reader.Read())
+                {
+                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == XMLElementMember))
+                    {
+                        if (reader.GetAttribute(XMLAttributeMemberId) == memberId)
+                        {
+                            member.Add(new KeyValuePair<string, string>(this.memberId, reader.GetAttribute(XMLAttributeMemberId)));
+                            member.Add(new KeyValuePair<string, string>(name, reader.GetAttribute(XMLAttributeName)));
+                            member.Add(new KeyValuePair<string, string>(socialSecNo, reader.GetAttribute(XMLAttributeSocialSecNo)));
+
+                            // For each element that is a child of member with id = memberId
+                            foreach (var boat in doc.Descendants(XMLElementMember)
+                                    .Elements(XMLElementBoat).Where(e => e.Parent.Name == XMLElementMember &&
+                                    e.Parent.Attribute(XMLAttributeMemberId).Value == memberId))
+                            {
+                                member.Add(new KeyValuePair<string, string>(boatId, boat.Attribute(XMLAttributeBoatId).Value));
+                                member.Add(new KeyValuePair<string, string>(boatType, boat.Attribute(XMLAttributeBoatType).Value));
+                                member.Add(new KeyValuePair<string, string>(boatLength, boat.Attribute(XMLAttributeBoatLength).Value));
+                            }
+                        }
+                    }
+                }
+
+                if (member.Count == 0)
+                {
+                    throw new Exception();
+                }
+
+                return member;
+            }
+        }
+
+        public void saveMember(Member newMember)
+        {
+            XDocument doc = XDocument.Load(path);
+            XElement memberRoot = new XElement(XMLElementMember);
+            memberRoot.Add(new XAttribute(XMLAttributeMemberId, newMember.MemberID.ToString()));
+            memberRoot.Add(new XAttribute(XMLAttributeName, newMember.MemberName));
+            memberRoot.Add(new XAttribute(XMLAttributeSocialSecNo, newMember.MemberSocSecNo));
+            doc.Element(XMLElementMembers).Add(memberRoot);
+            doc.Save(path);
+        }
+
+        public void deleteMemberById(string memberId)
+        {
+            XDocument doc = XDocument.Load(path);
+            doc.Root.Elements(XMLElementMember)
+                .Where(e => e.Attribute(XMLAttributeMemberId).Value.Equals(memberId))
+                .Select(e => e).Single()
+                .Remove();
+            doc.Save(path);
+        }
+
+        public void updateMemberById(Member editedMember)
+        {
+            XDocument doc = XDocument.Load(path);
+            var member = doc.Descendants(XMLElementMember)
+                .Where(arg => arg.Attribute(XMLAttributeMemberId).Value == editedMember.MemberID.ToString())
+                .Single();
+            member.Attribute(XMLAttributeName).Value = editedMember.MemberName;
+            member.Attribute(XMLAttributeSocialSecNo).Value = editedMember.MemberSocSecNo;
+            doc.Save(path);
+        }
+
         //Returns number of boats for one member.
         public int getNumberOfBoats(string memberId)
         {
@@ -217,6 +190,20 @@ namespace BoatClub.model
             return boatList.Count;
         }
 
+        public void saveBoat(Boat newBoat, string memberId)
+        {
+            XDocument doc = XDocument.Load(path);
+            doc.Element(XMLElementMembers).Elements(XMLElementMember)
+            .First(c => (string)c.Attribute(XMLAttributeMemberId) == memberId)
+            .Add(
+                new XElement(
+                XMLElementBoat, new XAttribute(XMLAttributeBoatId, newBoat.BoatId),
+                                new XAttribute(XMLAttributeBoatType, newBoat.BoatType),
+                                new XAttribute(XMLAttributeBoatLength, newBoat.BoatLength)
+                )
+            );
+            doc.Save(path);
+        }
 
         //Returns a list of boats for one member
         public List<KeyValuePair<string, string>> getBoatsByMemberId(string memberId)
@@ -285,5 +272,6 @@ namespace BoatClub.model
             member.Element(XMLElementBoat).Attribute(XMLAttributeBoatLength).Value = editedBoat.BoatLength;
             doc.Save(path);
         }
+     */
     }
 }

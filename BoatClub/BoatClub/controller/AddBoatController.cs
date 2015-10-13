@@ -32,10 +32,10 @@ namespace BoatClub.controller
         public void saveBoat()
         {
             MemberDAL memberDAL = new MemberDAL();
-            Boat newBoat = boatView.addBoat(choice);
+            boatView.addBoat(choice);
 
             //Save boat and go back to main menu
-            memberDAL.saveBoat(newBoat, choice);
+            //memberDAL.saveBoat(newBoat, choice);
             StartController startController = new StartController();
         }
     }

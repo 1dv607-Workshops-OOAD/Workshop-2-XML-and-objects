@@ -10,3 +10,8 @@ C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\bin\Releas
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\bin\Release\BoatClub.pdb
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\obj\Release\BoatClub.exe
 C:\Users\Lisa\Documents\GitHub\1dv607\Workshop2-XML\BoatClub\BoatClub\obj\Release\BoatClub.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\bin\Release\BoatClub.exe.config
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\obj\Release\BoatClub.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\obj\Release\BoatClub.pdb
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\bin\Release\BoatClub.exe
+C:\Users\Lisa\Documents\GitHub\1dv607\Workshop-2-XML-and-objects\BoatClub\BoatClub\bin\Release\BoatClub.pdb

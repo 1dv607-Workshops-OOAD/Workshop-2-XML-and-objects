@@ -14,7 +14,7 @@ namespace BoatClub.model
         private string path = "../../data/MemberID.txt";
         private int count;
 
-        public int generateMemberId()
+        public string generateMemberId()
         {
             using (StreamReader reader = new StreamReader(path))
             {
@@ -30,7 +30,7 @@ namespace BoatClub.model
                 }
             }
             writeToFile();
-            return this.count;
+            return this.count.ToString();
         }
 
         public void writeToFile()

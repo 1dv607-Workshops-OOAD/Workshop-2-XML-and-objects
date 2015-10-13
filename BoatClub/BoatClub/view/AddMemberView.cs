@@ -32,7 +32,7 @@ namespace BoatClub.view
                 memberSocSecNo = Console.ReadLine();
             }
             
-            Member newMember = new Member(0, this.memberName, this.memberSocSecNo);
+            Member newMember = new Member("0", memberName, memberSocSecNo);
 
             return newMember;
         }

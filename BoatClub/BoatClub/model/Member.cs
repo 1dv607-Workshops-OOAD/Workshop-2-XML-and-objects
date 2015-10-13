@@ -8,7 +8,7 @@ namespace BoatClub.model
 {
     class Member
     {
-        int _memberId;
+        string _memberId;
         string _memberName;
         string _memberSocSecNo;
 
@@ -16,11 +16,11 @@ namespace BoatClub.model
 
         private Boat boat;
 
-        public Member(int id, string memberName, string memberSocSecNo)
+        public Member(string id, string memberName, string memberSocSecNo)
         {
             memberDAL = new MemberDAL();
 
-            if (id == 0)
+            if (id == "0")
             {
                 //Sets a unique member id, for a new member
                 MemberID memberId = new MemberID();
@@ -36,7 +36,7 @@ namespace BoatClub.model
 
         public string MemberName { get { return _memberName; } }
         public string MemberSocSecNo { get { return _memberSocSecNo; } }
-        public int MemberID { get { return _memberId; } }
+        public string MemberID { get { return _memberId; } }
 
         public void addBoatToMember(int boatId, string boatType, string boatLength)
         {
@@ -44,12 +44,8 @@ namespace BoatClub.model
             memberDAL.saveBoat(MemberID.ToString(), boat);
         }
 
-        public Member getMemberById() {
-            return null;
-        }
-
-        public List<Boat> getBoatsByMember(int memberId) {
-            List<Boat> memberBoats = memberDAL.getBoatsByMemberId(memberId.ToString());
+        public List<Boat> getBoatsByMember(string memberId) {
+            List<Boat> memberBoats = memberDAL.getBoatsByMemberId(memberId);
             return memberBoats;
         }
     }

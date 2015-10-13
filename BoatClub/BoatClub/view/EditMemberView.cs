@@ -113,7 +113,7 @@ namespace BoatClub.view
                 newSocialSecNo = member.MemberSocSecNo;
             }
 
-            Member editedMember = new Member(int.Parse(memberId), newName, newSocialSecNo);
+            Member editedMember = new Member(memberId, newName, newSocialSecNo);
 
             return editedMember;
         }

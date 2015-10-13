@@ -27,7 +27,6 @@ namespace BoatClub.model
         private string XMLAttributeBoatType = "boatType";
         private string XMLAttributeBoatLength = "boatLength";
 
-
         public List<Member> getAllMembers() {
 
             List<Member> members = new List<Member>();
@@ -38,20 +37,16 @@ namespace BoatClub.model
                 {
                     if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == XMLElementMember))
                     {
-                        int id = int.Parse(reader.GetAttribute(XMLAttributeMemberId));
+                        string id = reader.GetAttribute(XMLAttributeMemberId);
                         string name = reader.GetAttribute(XMLAttributeName);
                         string socialSecNo = reader.GetAttribute(XMLAttributeSocialSecNo);
                         Member member = new Member(id, name, socialSecNo);
 
                         members.Add(member);
                     }
-
-                    //reader.GetAttribute(XMLAttributeBoatType);
-                    //reader.GetAttribute(XMLAttributeBoatLength);
                 }
             }
             return members;
-
         }
 
         //Returns selected member
@@ -61,7 +56,7 @@ namespace BoatClub.model
             Member selectedMember;
 
             foreach (Member member in members) { 
-                if(member.MemberID == int.Parse(memberId)){
+                if(member.MemberID == memberId){
                     selectedMember = member;
                     return selectedMember;
                 }
@@ -172,40 +167,5 @@ namespace BoatClub.model
             }
             return null;
         }
-
-
-        /// <summary>
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// </summary>
-
-        private Helper helper;
-
-        //Strings for generating key value pair lists
-        private string boatType;
-        private string boatLength;
-        private string socialSecNo;
-        private string memberId;
-        private string name;
-        private string numberOfBoats;
-        private string boatId;
-
-
-        public MemberDAL()
-        {
-            this.helper = new Helper();
-
-            boatType = helper.BoatType;
-            boatLength = helper.BoatLength;
-            socialSecNo = helper.SocialSecNo;
-            memberId = helper.MemberId;
-            name = helper.Name;
-            numberOfBoats = helper.NumberOfBoats;
-            boatId = helper.BoatId;
-        }
-        
-
-        
-
-        
     }
 }

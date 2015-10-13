@@ -34,7 +34,7 @@ namespace BoatClub.controller
             if(selectedBoatId.ToUpper() == "S"){
                 StartController startController = new StartController();
             }
-            editBoatView.showEditBoatMenu(selectedBoatId, member.MemberID.ToString());
+            editBoatView.showEditBoatMenu(selectedBoatId, member.MemberID);
         }
 
         public void executeMenuChoice()
@@ -45,11 +45,11 @@ namespace BoatClub.controller
 
             if (menuChoice == Helper.MenuChoice.Delete)
             {
-                memberDAL.deleteBoatById(selectedBoatId, member.MemberID.ToString());
+                memberDAL.deleteBoatById(selectedBoatId, member.MemberID);
             }
             if (menuChoice == Helper.MenuChoice.Edit)
             {
-                memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), member.MemberID.ToString());
+                memberDAL.updateBoatById(editBoatView.editBoat(selectedBoatId), member.MemberID);
             }
             StartController startController = new StartController();
         }
